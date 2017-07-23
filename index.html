@@ -1,0 +1,80 @@
+<html lang="pl">
+
+<head>
+    <meta charset="utf-8">
+    <title>Dźwięki</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="keys">
+        <div data-key="65" class="key">
+            <kbd>A</kbd>
+            <span class="sound">Oklaski</span>
+        </div>
+        <div data-key="83" class="key">
+            <kbd>S</kbd>
+            <span class="sound">dźwięk S</span>
+        </div>
+        <div data-key="68" class="key">
+            <kbd>D</kbd>
+            <span class="sound">dźwięk D</span>
+        </div>
+        <div data-key="70" class="key">
+            <kbd>F</kbd>
+            <span class="sound">dźwięk F</span>
+        </div>
+        <div data-key="71" class="key">
+            <kbd>G</kbd>
+            <span class="sound">dźwięk G</span>
+        </div>
+        <div data-key="72" class="key">
+            <kbd>H</kbd>
+            <span class="sound">dźwięk H</span>
+        </div>
+        <div data-key="74" class="key">
+            <kbd>J</kbd>
+            <span class="sound">dźwięk J</span>
+        </div>
+        <div data-key="75" class="key">
+            <kbd>K</kbd>
+            <span class="sound">dźwięk K</span>
+        </div>
+        <div data-key="76" class="key">
+            <kbd>L</kbd>
+            <span class="sound">dźwięk L</span>
+        </div>
+    </div>
+        <audio data-key="65" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/813391/clap.wav"></audio>
+        <audio data-key="83" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/813391/hihat.wav"></audio>
+        <audio data-key="68" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/813391/kick.wav"></audio>
+        <audio data-key="70" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/813391/openhat.wav"></audio>
+        <audio data-key="71" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/813391/boom.wav"></audio>
+        <audio data-key="72" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/813391/ride.wav"></audio>
+        <audio data-key="74" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/813391/snare.wav"></audio>
+        <audio data-key="75" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/813391/tom.wav"></audio>
+        <audio data-key="76" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/813391/tink.wav"></audio>
+</body>
+
+<script>
+                            
+    function playSound(e){
+        const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+        const key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
+        if(!audio) return; // jak wciśnie się inny przycisk niż podpisane
+        audio.currentTime = 0; // przerywanie dźwięku innym
+        audio.play(); // graj! :)
+        key.classList.add('playing');
+    }                        
+    
+    function removeTransition(e){
+        if(e.propertyName !== 'transform') return; //przerywa jak zmiana w css nie dotyczy transformacji
+        this.classList.remove('playing');
+    }
+    
+    const keys =document.querySelectorAll('.key');
+    keys.forEach(key => key.addEventListener('transitionend',removeTransition));
+    
+    window.addEventListener('keydown', playSound);
+</script>
+</html>

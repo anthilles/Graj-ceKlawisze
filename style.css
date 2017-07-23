@@ -1,0 +1,35 @@
+body {
+    background-image: url(sounds/Abstract_Wallpaper_084.jpg);
+}
+
+.key{
+    display: inline-grid;
+    border: solid 2px white;
+    border-radius: 5px;
+    padding: 10px;
+    margin: auto 10px;
+    transition: all 0.09s;
+    color: white;
+    text-transform: capitalize;
+    text-align: center;
+    background: rgba(0,0,0,0.4);
+}
+
+.keys {
+    display: flex;
+    width: 50%;
+    height: 50%;
+    margin: auto;
+    font-size: 14px;
+}
+
+.playing {
+    transform: scale(1.1);
+    color: yellow;
+    box-shadow: 0 0 10px #ffc600;
+}
+
+kbd {
+    color: yellow;
+    font-size: 20px;
+}
