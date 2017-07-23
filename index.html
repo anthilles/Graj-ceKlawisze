@@ -54,27 +54,11 @@
         <audio data-key="74" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/813391/snare.wav"></audio>
         <audio data-key="75" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/813391/tom.wav"></audio>
         <audio data-key="76" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/813391/tink.wav"></audio>
+        
+        
+            <script src="script.js"></script>
+
 </body>
 
-<script>
-                            
-    function playSound(e){
-        const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
-        const key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
-        if(!audio) return; // jak wciśnie się inny przycisk niż podpisane
-        audio.currentTime = 0; // przerywanie dźwięku innym
-        audio.play(); // graj! :)
-        key.classList.add('playing');
-    }                        
-    
-    function removeTransition(e){
-        if(e.propertyName !== 'transform') return; //przerywa jak zmiana w css nie dotyczy transformacji
-        this.classList.remove('playing');
-    }
-    
-    const keys =document.querySelectorAll('.key');
-    keys.forEach(key => key.addEventListener('transitionend',removeTransition));
-    
-    window.addEventListener('keydown', playSound);
-</script>
+
 </html>
